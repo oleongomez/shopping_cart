@@ -3,4 +3,6 @@ const data=[{"name":"apple", "instock":1},
     {"name":"mango", "instock":25},
     {"name":"pear", "instock":2},
     {"name":"orange", "instock":30},
-    {"name":"guava", "instock":12}]
+    {"name":"guava", "instock":12},
+    {"name":"avocado", "instock":12}
+]
