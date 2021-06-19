@@ -13,3 +13,12 @@ body {
     border-style: solid;
 
 }
+
+.circle {
+  width: 40px; 
+  height: 40px;
+  border-radius: 50%;
+  display: flex; /* or inline-flex */
+  align-items: center; 
+  justify-content: center;
+}

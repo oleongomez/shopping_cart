@@ -1,7 +1,8 @@
 const App = () => {
+    const [datas, setData] = React.useState(data)
     return <div>
         <h2>Stock</h2>
-        <Stock />
+        <Stock data={datas}/>
         <h2>Shopping Cart</h2>
         <ShoppingCart />
     </div>
