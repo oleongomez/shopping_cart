@@ -1,37 +1,25 @@
 const App = () => {
     const [stock_data, setStockData] = React.useState(data);
     const [cart_data, setCartData] = React.useState([]);
-    const addItemToCart = (event) => {
-        let stock_item = stock_data.filter(
-            (datum) => datum.name === event.target.id
-        );
-        let tmp_item = stock_item[0];
-        if (parseInt(tmp_item.quantity) <= 0) return;
-        let tmp_stock_data = substractOneItemTo(stock_data, tmp_item);
-        let trimmed_stock_data = removeItemIfZeroQuantity(tmp_stock_data);
-        let tmp_cart_data = addOneItemTo(cart_data, tmp_item);
-        setStockData(trimmed_stock_data);
-        setCartData(tmp_cart_data);
+    const addItemToCart = (name, A, B) => {
+        let trimmed_A_data, tmp_B_data 
+        [trimmed_A_data, tmp_B_data]= moveBetween(name,A,B)
+        setStockData(trimmed_A_data);
+        setCartData(tmp_B_data);
     };
-    const returnItemToStock = (event) => {
-        let cart_item = cart_data.filter(
-            (datum) => datum.name === event.target.id
-        );
-        let tmp_item = cart_item[0];
-        if (parseInt(tmp_item.quantity) <= 0) return;
-        let tmp_cart_data = substractOneItemTo(cart_data, tmp_item);
-        let trimmed_cart_data = removeItemIfZeroQuantity(tmp_cart_data);
-        let tmp_stock_data = addOneItemTo(stock_data, tmp_item);
-        setStockData(tmp_stock_data);
-        setCartData(trimmed_cart_data);
+    const returnItemToStock = (name, A, B) => {
+        let trimmed_A_data, tmp_B_data 
+        [trimmed_A_data, tmp_B_data]= moveBetween(name,A,B)
+        setStockData(tmp_B_data);
+        setCartData(trimmed_A_data);
     };
 
     return (
         <div>
             <h2>Stock</h2>
-            <Stock data={stock_data} handleClick={addItemToCart} />
+            <Stock data={stock_data} handleClick={e=>addItemToCart(e.target.id,stock_data,cart_data)} />
             <h2>Shopping Cart</h2>
-            <ShoppingCart data={cart_data} handleClick={returnItemToStock} />
+            <ShoppingCart data={cart_data} handleClick={e=>returnItemToStock(e.target.id, cart_data, stock_data)} />
         </div>
     );
 };
@@ -70,4 +58,16 @@ function substractOneItemTo(data, item) {
 }
 function removeItemIfZeroQuantity(data) {
     return data.filter((datum) => datum.quantity > 0);
+}
+
+function moveBetween(name,A,B){
+    let A_item = A.filter(
+        (datum) => datum.name === name
+    );
+    let tmp_item = A_item[0];
+    if (parseInt(tmp_item.quantity) <= 0) return null;
+    let tmp_A_data = substractOneItemTo(A, tmp_item);
+    let trimmed_A_data = removeItemIfZeroQuantity(tmp_A_data);
+    let tmp_B_data = addOneItemTo(B, tmp_item);
+    return [trimmed_A_data, tmp_B_data]
 }
