@@ -1,8 +1,8 @@
-const data=[{"name":"apple", "instock":1},
-    {"name":"pinapple", "instock":10},
-    {"name":"mango", "instock":25},
-    {"name":"pear", "instock":2},
-    {"name":"orange", "instock":30},
-    {"name":"guava", "instock":12},
-    {"name":"avocado", "instock":12}
+const data=[{"name":"apple", "quantity":1},
+    {"name":"pinapple", "quantity":10},
+    {"name":"mango", "quantity":25},
+    {"name":"pear", "quantity":2},
+    {"name":"orange", "quantity":30},
+    {"name":"guava", "quantity":12},
+    {"name":"avocado", "quantity":12}
 ]
